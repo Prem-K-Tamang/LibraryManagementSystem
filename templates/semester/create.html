@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create Semester - Library Mangement System
+{% endblock title%}
+
+{% block content %}
+
+ <div class="container">
+  <div class="row">
+      <div class="col-md-12 col-xl-12 d-flex">
+          <a href="{% url 'list_semester' %}"><h3 class="pl-1 mb-4">Semesters</h3></a> 
+          <h5 class="mt-1"> &nbsp; / Add new semester</h5>
+      </div>
+  </div>
+ <div class="row">
+      <div class="col-md-11 col-xl-11">
+          <form method="POST" enctype="multipart/form-data" class="pl-3" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="number">Semester Number</label>
+                <input type="number" min="1" max="15" class="form-control" name="number" autofocus tabindex="1">
+            </div>
+            <div class="form-group">
+              <label for="faculty">Faculty</label>
+                <select name="faculty" id="faculty" class="form-control">
+                    {% if faculties %}
+                    {% for faculty in faculties %}
+                        <option value="{{faculty.name}}">{{faculty.name}}</option>
+                    {% endfor %}
+                    {% endif %}
+                </select>
+            </div> 
+
+            <div class="form-group">
+                <input type="submit" value="Add Semester" class="btn btn-primary mt-3 mr-5">
+                <input type="reset" value="Reset" class="btn btn-danger mt-3">
+            </div>
+          </form>
+    </div>
+ </div>
+ <div class="row">
+     <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+      {% if messages %}
+          {% for message in messages %}
+              <p>{{message}}</p>
+          {% endfor %}
+      {% endif %}
+      </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Update a Faculty 
+{% endblock title%}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 d-flex">
+          <a 
+              href="{% url 'list_faculty' %}" ></a>
+              <h3 class="pl-3">
+                Faculties
+              </h3>
+          </a>
+          <h5 class="mt-1 text-secondary">
+                &nbsp; / Update a Faculty detail
+          </h5>
+      </div>
+  </div>
+ <div class="row">
+      <div class="col-md-11 col-xl-10">
+        {% if faculty %}
+        <form method="POST" enctype="multipart/form-data" class="pl-3 mt-4" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Faculty Name: {{faculty.name}}</label>
+            </div>
+
+            <div class="form-group">
+              <label for="total_student">Total Student</label>
+              <input type="number" class="form-control" name="total_student" id="total_student" value="{{faculty.total_student}}" tabindex="2">
+            </div>
+
+
+            <div class="form-group text-center">
+                <input type="submit" value="Update Faculty" class="btn btn-primary mt-3" tabindex="3">
+            </div>
+          </form>
+        {% endif %}
+    </div>
+ </div>
+ <div class="row">
+     <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+      {% if messages %}
+          {% for message in messages %}
+              <p style="color:rgb(8, 8, 8);" class="text-center"> * {{message}}</p>
+          {% endfor %}
+      {% endif %}
+     </div>
+ </div>
+</div>
+
+{% endblock content %}

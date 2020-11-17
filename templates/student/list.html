@@ -1,0 +1,129 @@
+{% extends  'base.html' %}
+{% block title %}
+
+   Students - Library Management System
+
+{% endblock title %}
+{% block custom %}
+<style>
+    
+input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+ .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+    .search-container {
+        float: none;
+  }
+   input[type=text], .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  input[type=text] {
+    border: 1px solid rgb(61, 59, 59);  
+  }
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <h3 class="pb-3">Students</h3>
+        </div>
+       
+        <div class="xs-12 col-sm-12 col-md-12 col-xl-12 text-right ">
+            <div class="search-container">
+                <form action="">
+                  <input type="text" placeholder="Search.." name="search">
+                  <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+              </div>
+        </div>
+    </div>
+   <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 mt-3">
+            <table class="table table-hover table-fixed">
+                <thead>
+                <tr>
+                    <th>Student ID </th>
+                    <th>Name Name</th>
+                    <th>Address</th>
+                    <th>Contact No.</th>
+                    <th>Semester</th>
+                    <th>Faculty</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if students %}
+                {% for student in students %}
+                <tr>
+                    <td scope="row" >{{student.student_id}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.address}}</td>
+                    <td>{{student.contact_no}}</td>
+                    <td>{{student.semester}}</td>
+                    <td>{{student.faculty}}</td>
+                    <td>
+                        <a href="{% url 'update_student' student.student_id %}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{% url 'delete_student' student.student_id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="6" >
+                        <p class="text-danger mt-4 text-center">
+                            * No student found!
+                        </p>
+                
+                    </td>
+                </tr>
+                {% endif %}
+                
+                </tbody>
+                
+            </table>
+      </div>
+   </div>
+   <div class="row">
+       <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+        {% if messages %}
+            {% for message in messages %}
+                <p class="text-center" style="color:rgb(24, 23, 23);">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+       </div>
+   </div>
+</div>
+
+
+{% endblock content %}

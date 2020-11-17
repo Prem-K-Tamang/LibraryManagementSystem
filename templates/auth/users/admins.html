@@ -1,0 +1,52 @@
+{% extends  'base.html' %}
+{% load static %}
+{% block title %}
+
+   Admins Users - Nepal Glory Tech Pvt. Ltd.
+
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row common-container" style="width:100%;">
+    <div class="col-md-12 col-xl-12">
+        <h3 class="ml-4 mb-4">Users</h3>
+        <h5> / Admin users</h5>
+    </div>
+    <div class="col-md-12 col-xl-12 text-right">
+        <a href="{% url 'new_user' %}" class="btn btn-primary btn-add">Create User</a>
+    </div>
+
+    <div class="col-md-12 col-xl-12">
+        <p class="font-weight-bold ml-4">Names of admin users </p>
+        <table class="table table-sm table-hover">
+            <tbody>
+                {% if users %}
+                {% for user in users %}
+                    <tr>
+                        <td class="text-capitalize pl-4"><a href="{% url 'user_detail' user.id %}">{{user.username}}</a></td>
+                    </tr>
+                {% endfor %}
+                {% else %}
+                    <tr>
+                        <td class="text-center pt-5">No admin user exists!</td> 
+                    </tr>
+                {% endif %}
+                {% if messages%}
+                {% for message in messages %}
+                <tr>
+                    <td class="text-center pt-5">{{message}}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,122 @@
+{% extends  'base.html' %}
+{% load static %}
+{% block title %}
+
+    Dashboard - Nepal Glory Tech Pvt. Ltd.
+
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+                <h3 class="mb-5">Dashboard</h3>
+            </div>
+        </div>
+        <div class="row">
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="text-dark">* {{message}}</p>
+
+                {% endfor %}
+
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-xl-3">
+                <div class="card pt-4 pb-4 text-white text-center mb-5" style="width:15vw;background:rgb(82, 12, 194);">
+                    <h6 style="margin: 0 !important;padding:0 !important;">Total Books
+                        <br>
+                        <span class="text-light">
+                            {% if books %}
+                                {{books.count}}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </span>
+                    </h6>
+                    
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-xl-3">
+                <div class="card  pt-4 pb-4 text-white text-center mb-5" style="width: 15vw; background:orange; ">
+                    <h6 style="margin: 0 !important;padding:0 !important;">Total Students
+                        <br>
+                        <span class="text-light">
+                            {% if students %}
+                                {{students.count}}
+                            {% else  %}
+                                0
+                            {% endif %}
+                        </span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-xl-3">
+                <div class="card pt-4 pb-4 bg-primary text-white text-center mb-5" style="width:15vw;">
+                    <h6 style="margin: 0 !important;padding:0 !important;">No of Issued Books
+                        <br>
+                        <span class="text-light">
+                            {% if issues %}
+                                {{issues.count}}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-xl-3">
+                <div class="card pt-4 pb-4 text-white text-center mb-5 bg-success" style="width:15vw;">
+                    <h6 style="margin: 0 !important;padding:0 !important;">  No of Returend Books
+                        <br>
+                        <span class="text-light">
+                            {% if returns %}
+                                {{returns.count}}
+                            {% else %}
+                                0
+                            {% endif %}
+
+                        </span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-xl-3">
+                <div class="card pt-4 pb-4 text-white text-center mb-5" style="width:15vw;background:rgb(218, 138, 152);">
+                    <h6 style="margin: 0 !important;padding:0 !important;">  No of Faculty
+                        <br>
+                        <span class="text-light">
+                            {% if faculties %}
+                                {{faculties.count}}
+                            {% else %}
+                                0
+                        {% endif %}
+                        </span>
+                    </h6>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-xl-3">
+                <div class="card pt-4 pb-4 text-white text-center mb-5" style="width: 15vw;background:rgb(16, 235, 45);">
+                    <h6 style="margin: 0 !important;padding:0 !important;">
+                        No of Semester
+                        <br>
+                        <span class="text-white">
+                            {% if semesters %}
+                                {{semesters.count}}
+                            {% else %}
+                                0
+                            {% endif %}
+
+                        </span>
+                    </h6>
+                </div>
+            </div>
+
+        </div>
+
+        
+    </div>
+    
+
+{% endblock content %}

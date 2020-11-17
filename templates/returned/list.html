@@ -1,0 +1,75 @@
+{% extends  'base.html' %}
+{% block title %}
+
+   Returned Books - Library Management System
+
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <h3 class="pb-3">Returned Books</h3>
+        </div>
+
+       
+    </div>
+   <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <table class="table table-hover table-fixed">
+                <thead>
+                <tr>
+                    <th >Book Name</th>
+                    <th >Book Code</th>
+                    <th >Student Name</th>
+                    <th >Charge</th>
+                    <th >Returned Date</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if returns %}
+                {% for rn in returns %}
+                <tr>
+                    <td>{{rn.issue.book.name}}</td>
+                    <td>{{rn.issue.book.code}}</td>
+                    <td>{{rn.issue.student.name}}</td>
+                    <td>{{rn.charge}}</td>
+                    <td>{{rn.returned_date}}</td>
+                    <td>
+                        <!-- <a href="" class="btn btn-primary btn-sm mr-3 ">Edit</a> -->
+                        <a href="{% url 'delete_return' rn.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td> 
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="8" >
+                        <p class="text-danger mt-4 text-center">
+                            * No returned record found!
+                        </p>
+                
+                    </td>
+                </tr>
+                {% endif %}
+                
+                </tbody>
+                
+            </table>
+      </div>
+   </div>
+   <div class="row">
+       <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+        {% if messages %}
+            {% for message in messages %}
+                <p class="text-center" style="color:rgb(24, 23, 23);">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+       </div>
+   </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,124 @@
+{% extends 'base.html '%}
+
+{% block title %}
+    Add new user - Nepal Glory Trek
+
+{% endblock %}
+
+{% block  content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 d-flex mb-3">
+            <a href="{% url 'list_users' %}">
+                <h4 class="mb-3">Users</h4>
+            </a> 
+            <span class="mt-1">&nbsp;/&nbsp;</span>
+            <h5 class="mt-1">  Create User</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6">
+            <form method ="POST">
+
+                {% csrf_token %}
+                <div class="form-group">
+                    <label 
+                        for="username">
+                        Username&nbsp;*
+                    </label>
+                    <input 
+                        type="text" 
+                        name="username" 
+                        maxlength="150" 
+                        autocapitalize="none" 
+                        autocomplete="username" 
+                        autofocus 
+                        required 
+                        id="username"
+                        class="form-control">
+
+                    <!-- <span>150 characters or fewer. Letters, digits and @/./+/-/_ only.</span> -->
+                </div>
+
+                <div class="form-group">
+                    <label 
+                        for="id_password1">
+                        Password&nbsp;*
+                    </label> 
+                    <input 
+                        type="password" 
+                        name="password1" 
+                        autocomplete="new-password" 
+                        required 
+                        id="id_password1"
+                        class="form-control"> 
+                        <!-- <span>
+                                Your password can’t be too similar to your other personal information.
+                                Your password must contain at least 8 characters.
+                                Your password can’t be a commonly used password.
+                                Your password can’t be entirely numeric. 
+                        </span>-->
+                </div>
+
+                <div class="form-group">
+                    <label 
+                        for="id_password2">
+                        Confirm Password&nbsp;*
+                    </label> 
+                    <input 
+                        type="password" 
+                        name="password2" 
+                        autocomplete="new-password" 
+                        required 
+                        id="id_password2"
+                        class="form-control"> 
+                        
+                </div>
+                <div class="form-group" style="display:flex;flex-direction:row-reverse;justify-content:flex-end; align-items:flex-start;">
+                    <label for="id_superuser" class="pl-2">Superuser</label>
+                    <input type="checkbox" name="superuser" id="id_superuser" style="width:17px;height:17px;margin-top: 3px;"> 
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" value="Create" class="btn btn-primary mt-4">
+                </div>
+            </form>
+        </div>  
+        <div class="col-xs-12 col-sm-12 col-md-6 col-xl-6" style="font-size:15px;">
+            <h6>Hints: </h6>
+            <span>* Username must be: 
+                <ul class="pl-5">
+                    <li >  150 characters or fewer.</li><li > Letters, digits and @/./+/-/_ only.</li>
+                </ul>
+            </span><br>
+            <span>* Password: 
+                <ul class="pl-5">
+                    <li> can’t be too similar to your other personal information.</li>
+                    <li> must contain at least 8 characters.</li>
+                    <li> can’t be a commonly used password.</li>
+                    <li> can’t be entirely numeric. </li>
+                </ul>
+            </span>
+
+            <span>* Confirm Password: 
+                <ul class="pl-5">
+                    <li><span>Enter the same password as before, for verification.</span></li>
+                </ul>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:rgb(44, 43, 43);">* {{message}}</p>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

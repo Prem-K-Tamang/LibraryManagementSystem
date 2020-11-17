@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    ID Card - Library Mangement System
+{% endblock title%}
+
+{% block custom  %}
+<style>
+  p {
+    color:#151313 !important;
+  }
+</style>
+
+
+{% endblock %}
+
+{% block content %}
+
+ <div class="container">
+  <div class="row">
+      <div class="col-md-12 col-xl-12 d-flex">
+          <h3 class="pl-1 mb-4">Students ID Cards</h3>
+      </div>
+  </div>
+ <div class="row">
+     {% if students %}
+     {% for student in students %}
+      <div class="col-xs-12 col-sm-12 col-md-6 col-xl-4 mb-5 ">
+        <div class="card" >
+            <div class="img pt-4 pb-4 bg-primary text-center">
+                <img class="text-center" src="{% static 'images/student.svg' %}" style="width:10vw;" alt="Card image cap">
+            </div>
+            <div class="card-body" style="font-weight:400;">
+              <h5 class="card-title text-center mb-4 mt-3">{{student.name}}</h5>
+              <p class="card-text">
+                <strong class="text-left">Student No.: </strong> {{student.student_id}}    
+              </p>
+              <p class="card-text">
+                <strong class="text-left">Address: </strong> {{student.address}}    
+              </p>
+              <p class="card-text">
+                <strong class="text-left">Contact No.: </strong> {{student.contact_no}}    
+              </p>
+              <p class="card-text">
+                <strong class="text-left">Faculty: </strong> {{student.faculty}}    
+              </p>
+              <p class="card-text">
+                <strong class="text-left">Semester.: </strong> {{student.semester}}    
+              </p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+
+    
+ </div>
+ <div class="row">
+     <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+      {% if messages %}
+          {% for message in messages %}
+              <p class="text-dark text-center"> * {{message}}</p>
+          {% endfor %}
+      {% endif %}
+      </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+
+{% block customJS %}
+
+<script type="text/javascript">
+  document.getElementById('id_student_id').classList.add('form-control');
+  document.getElementById('id_name').classList.add('form-control');
+  document.getElementById('id_address').classList.add('form-control');
+  document.getElementById('id_contact_no').classList.add('form-control');
+  document.getElementById('id_faculty').classList.add('form-control');
+  document.getElementById('id_semester').classList.add('form-control');
+
+</script>
+{% endblock %}

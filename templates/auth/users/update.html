@@ -1,0 +1,75 @@
+{% extends 'base.html '%}
+
+{% block title %}
+    Update user - Nepal Glory Trek
+
+{% endblock %}
+
+{% block  content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 d-flex mb-3">
+            <a href="{% url 'list_users' %}">
+                <h4 class="mb-3">Users</h4>
+            </a> 
+            <span class="mt-1">&nbsp;/&nbsp;</span>
+            <h5 class="mt-1">  Update User</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            {% if current_user %}
+            <form method ="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label 
+                        for="username">
+                        Username
+                    </label>
+                    <input 
+                        type="text" 
+                        name="username" 
+                        id="username"
+                        value="{{current_user.username}}"
+                        class="form-control"
+                        readonly
+                        >
+                </div>
+
+                <div class="form-group">
+                    <label 
+                        for="group">
+                        Group
+                    </label> 
+                    <select name="group" id="group">
+                        {% if groups %}
+                            {% for group in groups %}
+                                <option value="{{group.name}}" {% if current_user.groups.all.0.name == group.name %} selected {% endif%}>{{group.name}}</option>
+                            {% endfor %}
+
+                        {% endif %}
+                    </select>
+                <div class="form-group text-center">
+                    <input type="submit" value="Update" class="btn btn-primary mt-4">
+                </div>
+            </form>
+            {% endif %}
+        </div>  
+        
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:rgb(44, 43, 43);">* {{message}}</p>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

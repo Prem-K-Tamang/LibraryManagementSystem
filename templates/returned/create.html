@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create Issue - Library Mangement System
+{% endblock title%}
+
+{% block content %}
+
+ <div class="container">
+  <div class="row">
+      <div class="col-md-12 col-xl-12 d-flex">
+          <a href="{% url 'list_returned' %}"><h3 class="pl-1 mb-4">Returned Books</h3></a> 
+          <h5 class="mt-1 text-secondary"> &nbsp; / Return a book</h5>
+      </div>
+  </div>
+ <div class="row">
+      <div class="col-md-11 col-xl-11">
+          <form method="POST" enctype="multipart/form-data" class="pl-3" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="issue">
+                    Select a Issued Book
+                </label>
+
+                <select name="issue" id="issue" class="form-control">
+                    {% if issues.count > 0 %}
+                        {% for issue in issues  %}
+                            <option value="{{issue.id}}">
+                                {{issue.book.name}} - {{issue.student.name}}({{issue.student.student_id}})
+                            </option>
+                        {% endfor %}
+                    {% else %}
+                            <p class="text-danger text-center"> * No book to returen</>
+                    {% endif %}
+                </select>
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Return Book" class="btn btn-primary mt-3 mr-5">
+                <input type="reset" value="Cancel" class="btn btn-danger mt-3">
+            </div>
+          </form>
+    </div>
+ </div>
+ <div class="row">
+     <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+      {% if messages %}
+          {% for message in messages %}
+              <p class="text-center text-dark"> * {{message}}</p>
+          {% endfor %}
+      {% endif %}
+      </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

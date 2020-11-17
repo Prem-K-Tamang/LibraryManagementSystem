@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    User detail - Manage UI - Nepal Glory Trek
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 d-flex">
+                <h4 class="pb-3 mb-2 mt-1">User details</h4>
+            </div>
+        </div>
+       <div class="row">
+          <div class="class=col-xs-12 col-sm-12 col-md-12 col-xl-12">
+              {% if user %}
+             <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-capitalize">
+                        {{user.username}}
+                    </h3>
+                    <p class="card-text" style="color:rgb(24, 23, 23)">
+                       <strong>Groups: </strong> <span class="text-primary text-capitalize">{{user.groups.all.0}}</span>
+                    </p>
+                    
+                    <p class="card-text" style="color:rgb(24, 23, 23)">
+                        <strong>Last Login:</strong> {{user.last_login}}
+                    </p>
+                    <p class="card-text" style="color:rgb(24, 23, 23)">
+                        <strong>Date Joined: </strong> {{user.date_joined}} 
+                    </p>
+                   <a 
+                        href="{% url 'update_user' user.id %}" 
+                        class="btn btn-primary btn-outline-primary btn-sm pl-3 pr-3 mr-4">
+                        Update
+                    </a>
+                    <a 
+                        href="{% url 'delete_user' user.id %}" 
+                        class="btn btn-danger btn-sm pl-3 pr-3 mr-4">
+                        Delete
+                    </a> 
+
+           
+                </div>
+             </div>
+             {% endif %}
+          </div>
+       </div>
+       <div class="row">
+           <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+           </div>
+       </div>
+    </div>
+    
+    
+
+{% endblock %}

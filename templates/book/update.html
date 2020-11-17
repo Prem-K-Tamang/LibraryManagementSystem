@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Update a Book 
+{% endblock title%}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 d-flex">
+          <a 
+              href="{% url 'list_book' %}" >
+              <h3 class="pl-4">
+                Books
+              </h3>
+          </a>
+          <h5 class="mt-1">
+                &nbsp; / Update a book
+          </h5>
+      </div>
+  </div>
+ <div class="row">
+      <div class="col-md-11 col-xl-10">
+        {% if book %}
+        <form method="POST" enctype="multipart/form-data" class="pl-3" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="book_no">Book No.: {{book.id}}</label>
+            </div>
+            <div class="form-group">
+                <label for="name">Book Name</label>
+                <input type="text" class="form-control" name="name" value="{{book.name}}" autofocus tabindex="1">
+            </div>
+
+            <div class="form-group">
+              <label for="author">Author</label>
+              <input type="text" class="form-control" name="author" id="author" value="{{book.author}}" tabindex="2">
+            </div>
+
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" name="quantity" class="form-control" value="{{book.quantity}}" tabindex="3">
+            </div>
+            <div class="form-group">
+              <label for="subject_code">Subject Code</label>
+              <input type="subject_code" id="subject_code" name="code" class="form-control" value="{{book.code}}" tabindex="4">
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Update Book" class="btn btn-primary mt-3">
+            </div>
+          </form>
+        {% endif %}
+    </div>
+ </div>
+ <div class="row">
+     <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+      {% if messages %}
+          {% for message in messages %}
+              <p>{{message}}</p>
+          {% endfor %}
+      {% endif %}
+     </div>
+ </div>
+</div>
+
+{% endblock content %}

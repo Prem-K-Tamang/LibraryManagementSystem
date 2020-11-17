@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add Student - Library Mangement System
+{% endblock title%}
+
+{% block custom  %}
+<style>
+  p {
+    color:#151313 !important;
+  }
+</style>
+
+
+{% endblock %}
+
+{% block content %}
+
+ <div class="container">
+  <div class="row">
+      <div class="col-md-12 col-xl-12 d-flex">
+          <a href="{% url 'list_student' %}"><h3 class="pl-1 mb-4">Students</h3></a> 
+          <h5 class="mt-1 text-secondary"> &nbsp; / Add Student</h5>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-xl-12">
+        
+    </div>
+  </div>
+ <div class="row">
+      <div class="col-md-11 col-xl-11">
+          <form method="POST" enctype="multipart/form-data" class="pl-3" >
+            {% csrf_token %}
+            <!-- <div class="form-group">
+              <label for="student_id">Student ID</label>
+              <input type="text" class="form-control" id="student_id" name="student_id" autofocus tabindex="1" required>
+          </div>
+
+            <div class="form-group">
+                <label for="name">Student Name</label>
+                <input type="text" class="form-control" name="name" id="name" tabindex="2" required autocapitalize autocapitalize="name">
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" name="address" id="address"  tabindex="3" required autocomplete="address" autocapitalize>
+            </div>
+
+            <div class="form-group">
+              <label for="contact_no">Contact No.</label>
+              <input type="text" class="form-control" name="contact_no" id="contact_no" tabindex="4" required autocomplete="contact_no">
+            </div>
+
+            <div class="form-group">
+              <label for="faculty">Faculty</label>
+              <input type="text" name="faculty" id="faculty" class="form-contrl" value="{{faculty.name}}" required readonly>
+            </div>
+            <div class="form-group">
+              <label for="semester">Semester</label>
+              <select name="semester" id="semester" class="form-control">
+                  {% if semesters %}
+                    {% for semester in semesters %}
+                        <option value="{{semester.id}}">{{semester.number}}</option>
+                    {% endfor %}
+                  {% endif %}
+              </select>
+            </div> -->
+
+            {{form.as_p}}
+
+            <div class="form-group text-center">
+                <input type="submit" value="Add Student" class="btn btn-primary btn-sm mt-3 mr-5">
+                <input type="reset" value="Reset" class="btn btn-danger btn-sm mt-3">
+            </div>
+          </form>
+    </div>
+
+    
+ </div>
+ <div class="row">
+     <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+      {% if messages %}
+          {% for message in messages %}
+              <p class="text-dark text-center"> * {{message}}</p>
+          {% endfor %}
+      {% endif %}
+      </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+
+{% block customJS %}
+
+<script type="text/javascript">
+  document.getElementById('id_student_id').classList.add('form-control');
+  document.getElementById('id_name').classList.add('form-control');
+  document.getElementById('id_address').classList.add('form-control');
+  document.getElementById('id_contact_no').classList.add('form-control');
+  document.getElementById('id_faculty').classList.add('form-control');
+  document.getElementById('id_semester').classList.add('form-control');
+
+</script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends  'base.html' %}
+{% block title %}
+
+   Issued Books - Library Management System
+
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <h3 class="pb-3">Issued Books</h3>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 text-right">
+            <a href="{% url 'due_about_to_expire' %}" class="btn btn-primary btn-sm mb-3">Due day &lt; 2</a>
+        </div>
+       
+    </div>
+   <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <table class="table table-hover table-fixed">
+                <thead>
+                <tr>
+                    <!-- <th>Issue ID</th> -->
+                    <th class="text-center">Student Name</th>
+                    <!-- <th>Student ID</th> -->
+                    <th class="text-center">Book Name</th>
+                    <!-- <th>Book Code.</th> -->
+                    <th class="text-center">Date Issued</th>
+                    <th class="text-center">Due Date</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if issues %}
+                {% for issue in issues %}
+                <tr>
+                    <!-- <td>{{issue.id}}</td> -->
+                    <td>{{issue.student.name}}</td>
+                    <!-- <td>{{issue.student.id}}   </td> -->
+                    <td>{{issue.book.name}}</td>
+                    <!-- <td>{{issue.book.code}}</td> -->
+                    <td>{{issue.date_issued}}</td>
+                    <td>{{issue.due_date}}</td>
+                    <td>
+                        <a href="" class="btn btn-primary btn-sm mr-3 ">Edit</a>
+                        <a href="{% url 'delete_issue' issue.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td> 
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="8" >
+                        <p class="text-danger mt-4 text-center">
+                            * No issued book found!
+                        </p>
+                
+                    </td>
+                </tr>
+                {% endif %}
+                
+                </tbody>
+                
+            </table>
+      </div>
+   </div>
+   <div class="row">
+       <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+        {% if messages %}
+            {% for message in messages %}
+                <p class="text-center" style="color:rgb(24, 23, 23);">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+       </div>
+   </div>
+</div>
+
+
+{% endblock content %}

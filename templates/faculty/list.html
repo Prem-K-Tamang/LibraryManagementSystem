@@ -1,0 +1,73 @@
+{% extends  'base.html' %}
+{% block title %}
+
+   Faculties - Library Management System
+
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <h3 class="pb-3">Faculties</h3>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <p style="font-weight: 500;font-size: 20px;color:rgb(51, 50, 50);">List of Faculties</p>
+        </div>
+
+       
+    </div>
+   <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <table class="table table-hover table-fixed">
+                <thead>
+                <tr>
+                    <th>Faculty Name</th>
+                    <th>Total Student</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if faculties %}
+                {% for faculty in faculties %}
+                <tr>
+                    <td>{{faculty.name}}</td>
+                    <td>{{faculty.total_student}}</td>
+                    <td>
+                        <a href="{% url 'update_faculty' faculty.name %}" class="btn btn-primary btn-sm mr-3 ">Edit</a>
+                        <a href="{% url 'delete_faculty' faculty.name %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td> 
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="6" >
+                        <p class="text-danger mt-4 text-center">
+                            * No faculties found!
+                        </p>
+                
+                    </td>
+                </tr>
+                {% endif %}
+                
+                </tbody>
+                
+            </table>
+      </div>
+   </div>
+   <div class="row">
+       <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+        {% if messages %}
+            {% for message in messages %}
+                <p class="text-center" style="color:rgb(24, 23, 23);">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+       </div>
+   </div>
+</div>
+
+
+{% endblock content %}WW
