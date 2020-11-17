@@ -1,6 +1,6 @@
 # Library Management System - Manage Library #
 
- ============= ============= ============= ============= ============= ============= 
+ =============
 
 
 ## Table of Contents ##
